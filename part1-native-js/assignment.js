@@ -68,7 +68,18 @@ function updateTodoList(todoList){
 //      <li><a href="https://www.galvanize.com">Galvanize</a></li>
 //    </ul>
 
-
+function createList(obj){
+  var list = document.createElement("ul");
+  for(var key in obj){
+    var li = document.createElement("li");
+    li.innerText = key;
+    var a = document.createElement("a");
+    a.innerHTML = obj[key];
+    li.appendChild(a);
+    list.appendChild(li);
+  }
+  return list;
+}
 
 
 // Write a function named extractQuote that takes in one argument.
