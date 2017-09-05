@@ -72,9 +72,10 @@ function createList(obj){
   var list = document.createElement("ul");
   for(var key in obj){
     var li = document.createElement("li");
-    li.innerText = key;
+    console.log(obj[key]);
     var a = document.createElement("a");
-    a.innerHTML = obj[key];
+    a.setAttribute("href", obj[key])
+    a.innerText = key;
     li.appendChild(a);
     list.appendChild(li);
   }
@@ -106,8 +107,27 @@ function createList(obj){
 // TIP: Assume that if there's an opening double quote, there's a closing
 // double quote as well.
 
+function extractQuote(article){
+ var par = article.childNodes[0];
+ //console.log(par);
+ var text = article.firstChild.textContent;
+ //console.log(text);
+ var newText = text.match(/(?:"[^"]*"|^[^"]*$)/)[0].replace(/"/g, '');
+ //console.log("this is newText", '"'+ newText + '"');
+ if(newText !==  "There are no quotes here"){
+ var quote = document.createElement("blockquote");
+ quote.innerText ='"'+ newText + '"';
+ console.log("this is quote", quote);
+ article.appendChild(quote);
+ article.replaceChild(quote, par);
+ }
+ return article;
+}
 
 
+function createTable(data){
+
+}
 
 // Define a function named createTable that takes one argument.
 //   data (array of arrays)
